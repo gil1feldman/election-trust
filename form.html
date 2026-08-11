@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תיעוד אמירות ופעולות הפוגעות באמון הציבור בוועדת הבחירות</title>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1b2d42;
+    --navy-light: #243b55;
+    --gold: #c9a84c;
+    --gold-light: #e2c882;
+    --gold-pale: #f5ecd4;
+    --slate: #8a9bb0;
+    --white: #f8f9fb;
+    --surface: #ffffff;
+    --border: #dde3ec;
+    --text-main: #1a2535;
+    --text-muted: #6b7c93;
+    --danger: #c0392b;
+    --success: #1e7a4e;
+    --radius: 10px;
+    --shadow: 0 2px 16px rgba(13,27,42,0.09);
+    --shadow-hover: 0 8px 32px rgba(13,27,42,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Assistant', sans-serif;
+    background: #eef1f6;
+    color: var(--text-main);
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  /* ───── TOP BAR ───── */
+  .topbar {
+    background: var(--navy);
+    padding: 0 40px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--gold);
+  }
+  .topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .topbar-emblem {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .topbar-emblem svg { width: 20px; height: 20px; }
+  .topbar-title {
+    font-family: 'Heebo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+  .topbar-sub {
+    font-size: 11px;
+    color: var(--slate);
+    font-weight: 300;
+    margin-top: 1px;
+  }
+  .topbar-date {
+    font-size: 12px;
+    color: var(--slate);
+    font-weight: 400;
+  }
+
+  /* ───── LAYOUT ───── */
+  .page-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ───── SECTION HEADER ───── */
+  .section-header {
+    margin-bottom: 28px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section-header h1 {
+    font-family: 'Heebo', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .section-header p {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+  .gold-line {
+    width: 48px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+
+  /* ───── CARD ───── */
+  .card {
+    background: var(--surface);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    overflow: visible;
+    animation: fadeUp 0.5s ease both;
+  }
+  .card + .card { margin-top: 20px; }
+  .card:nth-child(2) { animation-delay: 0.05s; }
+  .card:nth-child(3) { animation-delay: 0.10s; }
+  .card:nth-child(4) { animation-delay: 0.15s; }
+
+  .card-header {
+    padding: 18px 28px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--gold-pale);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-icon svg { width: 16px; height: 16px; stroke: var(--gold); }
+  .card-title {
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+  }
+  .card-body {
+    padding: 24px 28px;
+  }
+
+  /* ───── GRID ───── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  @media (max-width: 620px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* ───── FIELD ───── */
+  .field { position: relative; }
+  .field + .field { margin-top: 0; }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 7px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  label .req {
+    color: var(--gold);
+    margin-right: 2px;
+  }
+
+  /* ───── FIELD HINT ───── */
+  .field-hint {
+    font-size: 11px;
+    color: var(--slate);
+    font-weight: 400;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .field-hint::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a9bb0' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='16' x2='12' y2='12'/%3E%3Cline x1='12' y1='8' x2='12.01' y2='8'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    flex-shrink: 0;
+  }
+
+  input[type=text],
+  input[type=url],
+  input[type=date],
+  select,
+  textarea {
+    width: 100%;
+    font-family: 'Assistant', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+    background: #f7f9fc;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 11px 14px;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+  }
+  textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
+
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238a9bb0' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 12px center;
+    padding-left: 36px;
+  }
+
+  /* ───── AUTOCOMPLETE ───── */
+  .autocomplete-wrap { position: relative; }
+  .autocomplete-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    left: 0;
+    background: var(--surface);
+    border: 1.5px solid var(--gold);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-hover);
+    z-index: 200;
+    max-height: 220px;
+    overflow-y: auto;
+    display: none;
+  }
+  .autocomplete-list.open { display: block; }
+  .autocomplete-item {
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: background 0.15s;
+    border-bottom: 1px solid #f0f2f5;
+  }
+  .autocomplete-item:last-child { border-bottom: none; }
+  .autocomplete-item:hover, .autocomplete-item.active {
+    background: var(--gold-pale);
+    color: var(--navy);
+  }
+  .autocomplete-item em {
+    font-style: normal;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ───── IMPACT SELECTOR ───── */
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-top: 4px;
+  }
+  @media (max-width: 560px) { .impact-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .impact-btn {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 4px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Assistant', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: #f7f9fc;
+    transition: all 0.18s;
+    line-height: 1.3;
+    user-select: none;
+  }
+  .impact-btn:hover { border-color: var(--slate); background: #f0f2f6; }
+  .impact-icon { font-size: 18px; display: block; margin-bottom: 4px; }
+
+  .impact-btn[data-val="מחליש מאוד"].sel   { background: #fde8e8; border-color: #c0392b; color: #c0392b; }
+  .impact-btn[data-val="מחליש"].sel        { background: #fef0eb; border-color: #e05c2a; color: #e05c2a; }
+  .impact-btn[data-val="מחליש קצת"].sel   { background: #fff5e6; border-color: #d97c1a; color: #d97c1a; }
+  .impact-btn[data-val="מחזק קצת"].sel    { background: #eafaf0; border-color: #27ae60; color: #27ae60; }
+  .impact-btn[data-val="מחזק"].sel         { background: #d6f5e3; border-color: #1e8449; color: #1e8449; }
+  .impact-btn[data-val="מחזק מאוד"].sel   { background: #c4efd4; border-color: #156535; color: #156535; }
+
+  input[type=hidden] { display: none; }
+
+  /* ───── SUBMIT ───── */
+  .submit-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 28px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn-submit {
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 13px 36px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-submit::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 0 0 10px 10px;
+  }
+  .btn-submit:hover { background: var(--navy-light); transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .btn-clear {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-clear:hover { border-color: var(--slate); color: var(--text-main); }
+
+  /* ───── TOAST ───── */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 3px solid var(--gold);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.error { border-bottom-color: var(--danger); }
+
+  /* ───── DISCLAIMER MODAL ───── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(13,27,42,0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    padding: 24px;
+    backdrop-filter: blur(2px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--surface);
+    border-radius: 14px;
+    max-width: 640px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-hover);
+    border-top: 4px solid var(--gold);
+    animation: fadeUp 0.35s ease both;
+  }
+  .modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px 26px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+  }
+  .modal-head h2 {
+    font-family: 'Heebo', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .modal-close {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 8px;
+    background: var(--gold-pale);
+    color: var(--navy);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: var(--gold-light); }
+  .modal-body {
+    padding: 22px 26px 26px;
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--text-main);
+  }
+  .modal-body p { margin: 0; }
+  .modal-body p + p { margin-top: 15px; }
+  .modal-body p:nth-of-type(2) { border-right: 3px solid #6b5aa6; padding-right: 13px; }
+  .modal-body p:nth-of-type(3) { border-right: 3px solid #8e3653; padding-right: 13px; }
+  .modal-contact {
+    margin-top: 20px;
+    padding: 15px 17px;
+    background: #eaf2fb;
+    border: 1px solid #cfdeef;
+    border-radius: 9px;
+    color: var(--navy);
+  }
+  .modal-contact a { color: var(--navy); font-weight: 700; }
+
+  /* ───── SPINNER ───── */
+  .spinner {
+    width: 18px; height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+  }
+  .btn-submit.loading .spinner { display: block; }
+  .btn-submit.loading .btn-text { opacity: 0.7; }
+
+  /* ───── CHAR COUNTER ───── */
+  .char-count {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: left;
+    margin-top: 4px;
+  }
+
+  /* ───── ANIMATIONS ───── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ───── LOADING OVERLAY ───── */
+  .loading-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    color: var(--text-muted);
+    font-size: 14px;
+    gap: 12px;
+  }
+  .loading-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+  .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes pulse { 0%,80%,100%{opacity:.3} 40%{opacity:1} }
+
+  /* Dashboard visual language */
+  :root {
+    --navy: #0b3a6f;
+    --navy-mid: #15558e;
+    --navy-light: #1b669d;
+    --gold: #0b3a6f;
+    --gold-light: #8fb5d8;
+    --gold-pale: #eaf2fb;
+    --slate: #667085;
+    --white: #ffffff;
+    --surface: #ffffff;
+    --border: #d8dee8;
+    --text-main: #172033;
+    --text-muted: #667085;
+    --radius: 9px;
+    --shadow: 0 3px 12px rgba(29,53,87,.05);
+    --shadow-hover: 0 10px 25px rgba(22,59,101,.13);
+  }
+  body { background: #f3f6f9; font-family: Arial, "Noto Sans Hebrew", sans-serif; }
+  .topbar {
+    height: auto;
+    min-height: 112px;
+    padding: 18px 24px;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(120deg,#071f3c 0%,#0b3a6f 52%,#1b669d 100%);
+    border-bottom: 0;
+    box-shadow: 0 7px 24px rgba(9,40,73,.21);
+  }
+  .topbar::after {
+    content: "";
+    position: absolute;
+    left: -70px;
+    top: -125px;
+    width: 310px;
+    height: 310px;
+    border: 55px solid rgba(255,255,255,.05);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .topbar-brand { position: relative; z-index: 1; flex-direction: column; gap: 8px; text-align: center; }
+  .topbar-emblem { display: none; }
+  .topbar-title { font-family: inherit; font-size: 26px; line-height: 1.25; letter-spacing: 0; }
+  .topbar-sub {
+    display: inline-block;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 999px;
+    background: rgba(255,255,255,.07);
+    color: #fff;
+    font-size: 12px;
+  }
+  .topbar-date { position: absolute; left: 24px; bottom: 17px; z-index: 1; color: rgba(255,255,255,.7); }
+  .page-wrapper { max-width: 920px; padding: 28px 24px 70px; }
+  .section-header { text-align: center; margin-bottom: 22px; }
+  .section-header h1 { font-family: inherit; color: var(--navy); font-size: 25px; }
+  .section-header p { font-size: 14px; }
+  .gold-line { width: 54px; height: 4px; margin: 0 auto 13px; background: var(--navy); }
+  .card { border: 1px solid var(--border); border-radius: 13px; box-shadow: var(--shadow); }
+  .card + .card { margin-top: 18px; }
+  .form-card { position: relative; overflow: visible; border-top: 4px solid var(--navy); transition: transform .2s ease, box-shadow .2s ease; }
+  .form-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(22,59,101,.10); }
+  .card-details { border-top-color: #0b3a6f; }
+  .card-source { border-top-color: #2f7d73; }
+  .card-notes { border-top-color: #6b5aa6; }
+  .card-details .card-icon { background: #eaf2fb; }
+  .card-details .card-icon svg { stroke: #0b3a6f; }
+  .card-source .card-icon { background: #e7f4f1; }
+  .card-source .card-icon svg { stroke: #2f7d73; }
+  .card-notes .card-icon { background: #f0edf8; }
+  .card-notes .card-icon svg { stroke: #6b5aa6; }
+  .card-source .card-title { color: #2f7d73; }
+  .card-notes .card-title { color: #6b5aa6; }
+  .card-header { padding: 17px 24px 14px; border-bottom-color: var(--border); }
+  .card-icon { background: #eaf2fb; }
+  .card-icon svg { stroke: var(--navy); }
+  .card-title { font-family: inherit; color: var(--navy); font-size: 15px; }
+  .card-body { padding: 23px 24px; }
+  label { color: #445168; text-transform: none; letter-spacing: 0; font-size: 13px; }
+  label .req { color: #c62828; }
+  input[type=text], input[type=url], input[type=date], select, textarea {
+    font-family: inherit;
+    background: #fff;
+    border: 1px solid #aeb8c7;
+    border-radius: 7px;
+    padding: 10px 12px;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(11,58,111,.10); }
+  .autocomplete-list { border-color: #8fb5d8; }
+  .autocomplete-item:hover, .autocomplete-item.active { background: #eaf2fb; color: var(--navy); }
+  .autocomplete-item em { color: var(--navy); }
+  .field-hint::before { filter: sepia(1) saturate(.7) hue-rotate(165deg); }
+  .impact-btn { font-family: inherit; background: #fff; border: 1px solid #aeb8c7; border-radius: 7px; }
+  .btn-submit {
+    font-family: inherit;
+    background: linear-gradient(120deg,var(--navy),var(--navy-mid));
+    border-radius: 9px;
+    box-shadow: 0 4px 12px rgba(11,58,111,.20);
+  }
+  .btn-submit::after { display: none; }
+  .btn-submit:hover { background: linear-gradient(120deg,#092f5b,#15558e); }
+  .btn-clear { font-family: inherit; background: #fff; border: 1px solid #9aa8bb; border-radius: 7px; color: var(--navy); }
+  .field-hint { color: #6b7280; }
+  textarea { border-right: 3px solid #8e3653; }
+  .site-footer { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--text-muted); }
+  .site-footer a { color: var(--navy); font-weight: 700; text-decoration: none; }
+  .site-footer a:hover { text-decoration: underline; }
+  .toast { background: var(--navy); border-bottom: 0; }
+  .loading-dot { background: var(--navy); }
+  @media (max-width: 620px) {
+    .topbar { position: static; min-height: 0; padding: 17px; }
+    .topbar::after { display: none; }
+    .topbar-title { font-size: 20px; }
+    .topbar-date { position: static; margin-top: 4px; }
+    .page-wrapper { padding: 20px 13px 55px; }
+    .section-header h1 { font-size: 22px; }
+    .card-header, .card-body { padding-right: 18px; padding-left: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-emblem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    </div>
+    <div>
+      <div class="topbar-sub">טופס לתיעוד</div>
+      <div class="topbar-title">תיעוד אמירות ופעולות הפוגעות באמון הציבור בוועדת הבחירות</div>
+    </div>
+  </div>
+  <a href="index.html" style="color:var(--gold-light);border:1px solid var(--gold);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">📊 לדשבורד</a>
+</header>
+
+<!-- MAIN -->
+<main class="page-wrapper" id="mainContent" style="display:none">
+
+  <div class="section-header">
+    <div class="gold-line"></div>
+    <h1>הוספת ידיעה חדשה</h1>
+    <p>מלאו את הפרטים לתיעוד ידיעה</p>
+  </div>
+
+  <!-- CARD 1: פרטי הידיעה -->
+  <div class="card form-card card-details">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg>
+      </div>
+      <span class="card-title">פרטי הידיעה</span>
+    </div>
+    <div class="card-body">
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="field">
+          <label>תאריך ושעה</label>
+          <input type="date" id="fDate">
+        </div>
+        <div class="field">
+          <label>קישור לידיעה</label>
+          <input type="url" id="fLink" placeholder="https://..." autocomplete="off">
+        </div>
+      </div>
+      <div class="field">
+        <label>תיאור קצר <span class="req">*</span></label>
+        <textarea id="fDesc" placeholder="תיאור תמציתי של הידיעה..." maxlength="500" rows="3"></textarea>
+        <div class="char-count"><span id="descCount">0</span>/500</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2: מקור ופרסום -->
+  <div class="card form-card card-source">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <span class="card-title">מקור ופרסום</span>
+    </div>
+    <div class="card-body">
+
+      <!-- שורה 1: מהות הפעולה + מי הגורמ/ים + שיוך מפלגתי -->
+      <div class="grid-3" style="margin-bottom:20px">
+        <div class="field autocomplete-wrap">
+          <label>מהות הפעולה <span class="req">*</span></label>
+          <select id="fActionType">
+            <option value="">— בחרו —</option>
+          </select>
+        </div>
+        <div class="field autocomplete-wrap">
+          <label>מי הגורמ/ים <span class="req">*</span></label>
+          <input type="text" id="fSpeaker" placeholder="הקלידו שם גורם..." autocomplete="off">
+          <div class="autocomplete-list" id="acSpeaker"></div>
+          <div class="field-hint">ניתן להוסיף מספר גורמים מופרדים בפסיק</div>
+        </div>
+        <div class="field autocomplete-wrap">
+          <label>שיוך מפלגתי <span class="req">*</span></label>
+          <input type="text" id="fParty" placeholder="שם מפלגה / גוף..." autocomplete="off">
+          <div class="autocomplete-list" id="acParty"></div>
+          <div class="field-hint">ניתן לציין מספר מפלגות מופרדות בפסיק</div>
+        </div>
+      </div>
+
+      <!-- שורה 2: תפקיד התוקף + איפה פורסם -->
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="field">
+          <label>תפקיד התוקף</label>
+          <input type="text" id="fRole" placeholder="לדוגמה: שר הפנים, יו&quot;ר ועדה..." autocomplete="off">
+        </div>
+        <div class="field autocomplete-wrap">
+          <label>איפה פורסם <span class="req">*</span></label>
+          <input type="text" id="fWhere" placeholder="ערוץ / פלטפורמה..." autocomplete="off">
+          <div class="autocomplete-list" id="acWhere"></div>
+        </div>
+      </div>
+
+      <!-- שורה 3: יעד הפעולה -->
+      <div class="field" style="margin-bottom:20px">
+        <label>יעד הפעולה <span class="req">*</span></label>
+        <select id="fTarget">
+          <option value="">— בחרו —</option>
+        </select>
+      </div>
+
+      <!-- שורה 4: שם המותקף -->
+      <div class="field autocomplete-wrap" style="margin-bottom:20px">
+        <label>שם המותקף <span class="req" id="attackedReq" style="display:none">*</span> <span id="attackedOptional" style="font-weight:400;color:var(--text-muted)">(שדה רשות)</span></label>
+        <input type="text" id="fAttacked" placeholder="לדוגמה: נעם סולברג, דין ליבנה" autocomplete="off">
+        <div class="autocomplete-list" id="acAttacked"></div>
+        <div class="field-hint">ניתן להוסיף יותר משם אחד ולהפריד בין השמות בפסיק</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CARD 3: הערות -->
+  <div class="card form-card card-notes">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <span class="card-title">הערות</span>
+    </div>
+    <div class="card-body">
+      <div class="field">
+        <label>הערות נוספות</label>
+        <textarea id="fNotes" placeholder="הוסיפו הקשר, הערות, או מידע משלים..." rows="3"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="submit-area">
+    <button class="btn-submit" id="btnSubmit" onclick="submitForm()">
+      <div class="spinner"></div>
+      <span class="btn-text">שמירת הידיעה</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </button>
+    <button class="btn-clear" onclick="clearForm()">איפוס טופס</button>
+  </div>
+
+  <footer class="site-footer">
+    <a href="#" onclick="openDisclaimer(event)">הבהרה</a>
+  </footer>
+
+</main>
+
+<!-- Disclaimer Modal -->
+<div class="modal-overlay" id="disclaimerOverlay" onclick="if(event.target===this) closeDisclaimer()">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle">
+    <div class="modal-head">
+      <h2 id="disclaimerTitle">הבהרה</h2>
+      <button type="button" class="modal-close" onclick="closeDisclaimer()" aria-label="סגירה">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>המערכת נועדה לתעד ולהנגיש לציבור אמירות ופעולות שיש בהן, לדעת צוות המיזם, כדי לפגוע באמון הציבור בוועדת הבחירות המרכזית, בתקינות הליך הבחירות או בתוצאותיו.</p>
+      <p>המידע במערכת מבוסס על פרסומים גלויים באמצעי התקשורת וברשתות החברתיות. כל פריט נבדק ומסווג בהתאם למתודולוגיה שנקבעה מראש, אולם הסיווג כולל מטבעו גם שיקול דעת מקצועי ואינו מהווה קביעה משפטית, קביעה בדבר כוונת הדובר או טענה לביצוע עבירה.</p>
+      <p>המערכת אינה מתיימרת להציג את כלל הפרסומים בנושא, וייתכנו בה טעויות, אי-דיוקים או מידע חסר. הקישורים למקורות החיצוניים מובאים לצורך תיעוד והקשר בלבד, והמיזם אינו אחראי לתוכנם או לזמינותם.</p>
+      <p class="modal-contact">אנו מחויבים לדיוק, להוגנות ולשקיפות. ניתן לפנות אלינו בכתובת <a href="mailto:electiontrust2026@gmail.com">electiontrust2026@gmail.com</a> בבקשה לתיקון, להשלמת מידע או להצגת הבהרה. כל פנייה תיבחן לגופה, ובמידת הצורך יעודכן המידע במערכת.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Loading -->
+<div id="pageLoader" style="display:flex">
+  <div class="loading-overlay">
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+    <span style="margin-right:8px">טוען נתונים...</span>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbw2puME8e4VrUrQ9X0_lrKVwCU69JfKgxw_fk7zfFjUQqLqv4ZQpIFeViutiZibhpux/exec";
+
+// ── API call ──
+async function api(params) {
+  const url = new URL(API);
+  Object.entries(params).forEach(([k,v]) => url.searchParams.set(k, v));
+  const res = await fetch(url.toString());
+  return res.json();
+}
+
+// ── Load options & init ──
+async function init() {
+  try {
+    const data = await api({ action: 'getOptions' });
+    if (data.success) {
+      populateSelect('fActionType', data.options['מהות הפעולה'] || []);
+      populateSelect('fTarget',     data.options['יעד הפעולה']  || []);
+    }
+  } catch(e) { console.warn('Could not load options:', e); }
+  document.getElementById('pageLoader').style.display = 'none';
+  document.getElementById('mainContent').style.display = 'block';
+}
+
+function populateSelect(id, values) {
+  const sel = document.getElementById(id);
+  values.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = opt.textContent = v;
+    sel.appendChild(opt);
+  });
+}
+
+// ── Autocomplete ──
+const acTimers = {};
+function setupAutocomplete(inputId, listId, fieldName) {
+  const input = document.getElementById(inputId);
+  const list  = document.getElementById(listId);
+  let activeIdx = -1;
+
+  input.addEventListener('input', () => {
+    clearTimeout(acTimers[inputId]);
+    acTimers[inputId] = setTimeout(() => fetchSuggestions(input, list, fieldName), 250);
+    activeIdx = -1;
+  });
+
+  input.addEventListener('keydown', e => {
+    const items = list.querySelectorAll('.autocomplete-item');
+    if (!items.length) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      activeIdx = Math.min(activeIdx + 1, items.length - 1);
+      highlight(items, activeIdx);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeIdx = Math.max(activeIdx - 1, 0);
+      highlight(items, activeIdx);
+    } else if (e.key === 'Enter' && activeIdx >= 0) {
+      e.preventDefault();
+      // For multi-value fields, append to existing value
+      const current = input.value;
+      const lastComma = current.lastIndexOf(',');
+      const prefix = lastComma >= 0 ? current.substring(0, lastComma + 1) + ' ' : '';
+      input.value = prefix + items[activeIdx].dataset.val;
+      closeList(list);
+    } else if (e.key === 'Escape') {
+      closeList(list);
+    }
+  });
+
+  input.addEventListener('blur', () => {
+    setTimeout(() => closeList(list), 150);
+  });
+}
+
+// For multi-value autocomplete fields (speaker, party), query only the last segment after comma
+function getLastSegment(val) {
+  const parts = val.split(',');
+  return parts[parts.length - 1].trim();
+}
+
+function highlight(items, idx) {
+  items.forEach((it, i) => it.classList.toggle('active', i === idx));
+  if (items[idx]) items[idx].scrollIntoView({ block: 'nearest' });
+}
+
+async function fetchSuggestions(input, list, fieldName) {
+  const q = getLastSegment(input.value);
+  if (!q) { closeList(list); return; }
+  try {
+    const data = await api({ action:'getAutoComplete', field: fieldName, query: q });
+    if (data.success && data.suggestions.length) {
+      renderList(list, data.suggestions, input, q);
+    } else { closeList(list); }
+  } catch(e) { closeList(list); }
+}
+
+function renderList(list, suggestions, input, q) {
+  list.innerHTML = '';
+  suggestions.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'autocomplete-item';
+    item.dataset.val = s;
+    const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+    item.innerHTML = s.replace(re, '<em>$1</em>');
+    item.addEventListener('mousedown', e => {
+      e.preventDefault();
+      // Append to existing comma-separated values
+      const current = input.value;
+      const lastComma = current.lastIndexOf(',');
+      const prefix = lastComma >= 0 ? current.substring(0, lastComma + 1) + ' ' : '';
+      input.value = prefix + s;
+      closeList(list);
+    });
+    list.appendChild(item);
+  });
+  list.classList.add('open');
+}
+
+function closeList(list) {
+  list.classList.remove('open');
+  list.innerHTML = '';
+}
+
+// ── Char counter ──
+document.getElementById('fDesc').addEventListener('input', function() {
+  document.getElementById('descCount').textContent = this.value.length;
+});
+
+// בעל התפקיד המותקף הוא שדה חובה רק כאשר יעד הפעולה הוא בעלי תפקידים
+function attackedIsRequired() {
+  return document.getElementById('fTarget').value.includes('בעלי תפקיד');
+}
+
+function updateAttackedRequirement() {
+  const required = attackedIsRequired();
+  const input = document.getElementById('fAttacked');
+  document.getElementById('attackedReq').style.display = required ? 'inline' : 'none';
+  document.getElementById('attackedOptional').style.display = required ? 'none' : 'inline';
+  input.required = required;
+  input.setAttribute('aria-required', required ? 'true' : 'false');
+}
+
+document.getElementById('fTarget').addEventListener('change', updateAttackedRequirement);
+
+// ── Submit ──
+async function submitForm() {
+  const desc   = document.getElementById('fDesc').value.trim();
+  const action = document.getElementById('fActionType').value;
+  const speaker= document.getElementById('fSpeaker').value.trim();
+  const party  = document.getElementById('fParty').value.trim();
+  const role   = document.getElementById('fRole').value.trim();
+  const attacked = document.getElementById('fAttacked').value.trim();
+  const where  = document.getElementById('fWhere').value.trim();
+  const target = document.getElementById('fTarget').value;
+
+  if (!desc)    return showToast('יש להזין תיאור קצר', true);
+  if (!action)  return showToast('יש לבחור מהות הפעולה', true);
+  if (!speaker) return showToast('יש להזין שם גורם/ים', true);
+  if (!party)   return showToast('יש להזין שיוך מפלגתי', true);
+  if (!where)   return showToast('יש להזין היכן פורסם', true);
+  if (!target)  return showToast('יש לבחור יעד פרסום', true);
+  if (attackedIsRequired() && !attacked) return showToast('יש להזין את שם המותקף', true);
+
+  const btn = document.getElementById('btnSubmit');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  // Format date
+  let dateVal = document.getElementById('fDate').value;
+  if (dateVal) {
+    const d = new Date(dateVal + 'T12:00:00');
+    dateVal = d.toLocaleDateString('he-IL');
+  }
+
+  try {
+    const res = await api({
+      action:      'addRow',
+      date:        dateVal,
+      description: desc,
+      link:        document.getElementById('fLink').value.trim(),
+      actionType:  action,
+      speaker:     speaker,
+      party:       party,
+      role:        role,
+      attacked:    attacked,
+      publishedAt: where,
+      target:      target,
+      impact:      '',
+      notes:       document.getElementById('fNotes').value.trim()
+    });
+
+    if (res.success) {
+      showToast('✓ הידיעה נשמרה בהצלחה (שורה ' + res.rowNumber + ')');
+      clearForm();
+    } else {
+      showToast('שגיאה: ' + (res.error || 'אירעה שגיאה'), true);
+    }
+  } catch(e) {
+    showToast('שגיאת תקשורת – נסו שנית', true);
+  }
+
+  btn.classList.remove('loading');
+  btn.disabled = false;
+}
+
+// ── Clear form ──
+function clearForm() {
+  ['fDate','fLink','fDesc','fSpeaker','fParty','fRole','fAttacked','fWhere','fNotes'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('fActionType').selectedIndex = 0;
+  document.getElementById('fTarget').selectedIndex = 0;
+  updateAttackedRequirement();
+  document.getElementById('descCount').textContent = '0';
+  ['acSpeaker','acParty','acAttacked','acWhere'].forEach(id => closeList(document.getElementById(id)));
+}
+
+// ── Disclaimer modal ──
+function openDisclaimer(e) {
+  if (e) e.preventDefault();
+  document.getElementById('disclaimerOverlay').classList.add('open');
+}
+function closeDisclaimer() {
+  document.getElementById('disclaimerOverlay').classList.remove('open');
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDisclaimer();
+});
+
+// ── Toast ──
+function showToast(msg, isError = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isError ? ' error' : '');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ── Init ──
+setupAutocomplete('fSpeaker', 'acSpeaker', 'מי הגורמ/ים');
+setupAutocomplete('fParty',   'acParty',   'שיוך מפלגתי');
+setupAutocomplete('fAttacked','acAttacked','בעל התפקיד המותקף');
+setupAutocomplete('fWhere',   'acWhere',   'איפה פורסם');
+updateAttackedRequirement();
+init();
+</script>
+</body>
+</html>
