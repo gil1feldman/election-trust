@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>תיעוד אמירות ופעולות הפוגעות באמון הציבור בוועדת הבחירות</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+  <style>
+    :root{--blue:#0b3a6f;--blue2:#15558e;--ink:#172033;--muted:#667085;--line:#d8dee8;--paper:#f3f6f9;--red:#c62828;--green:#16815a}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,"Noto Sans Hebrew",sans-serif}
+    button,input,select{font:inherit}.topbar{position:sticky;top:0;z-index:20;overflow:hidden;background:linear-gradient(120deg,#071f3c 0%,#0b3a6f 52%,#1b669d 100%);color:#fff;box-shadow:0 7px 24px #09284936}.topbar:after{content:"";position:absolute;left:-70px;top:-125px;width:310px;height:310px;border:55px solid #ffffff0c;border-radius:50%;pointer-events:none}
+    .topbar-inner{position:relative;z-index:1;max-width:1280px;min-height:94px;margin:auto;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:28px}.eyebrow{display:inline-block;font-size:12px;letter-spacing:.04em;margin:0 0 7px;padding:4px 10px;border:1px solid #ffffff40;border-radius:999px;background:#ffffff12}.topbar h1{max-width:820px;font-size:26px;line-height:1.25;margin:0}.top-actions{display:flex;gap:9px;flex-shrink:0}.top-actions button{background:#ffffff12;backdrop-filter:blur(5px);color:#fff;border:1px solid #ffffff4d;padding:10px 14px;border-radius:9px;font-weight:700;cursor:pointer;transition:.2s ease}.top-actions button:hover{background:#ffffff26;transform:translateY(-1px)}
+    main{max-width:1280px;margin:auto;padding:22px}.card{background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:0 3px 12px #1d35570d}.notice{padding:14px 18px;border-radius:10px;background:#eef4fb;border:1px solid #b8cae1;margin-bottom:16px}.notice.error{background:#fff1f1;border-color:#f1b4b4}.hidden{display:none!important}
+    #filtersCard{display:none;padding:19px;margin-bottom:18px;border-top:4px solid var(--blue)}#filtersCard.open{display:block}.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.section-head h2{margin:0;font-size:19px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.ghost{border:1px solid #9aa8bb;background:#fff;color:var(--blue);border-radius:7px;padding:8px 12px;font-weight:700;cursor:pointer}
+    .filter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:17px}.filter-grid label{display:grid;gap:6px;font-size:13px;font-weight:700}.filter-grid input,.filter-grid select{width:100%;min-width:0;padding:10px;border:1px solid #aeb8c7;border-radius:7px;background:#fff;color:var(--ink)}.filter-grid .wide{grid-column:span 2}
+    .intro{position:relative;overflow:hidden;margin-bottom:18px;padding:22px 27px;border:0;border-right:6px solid var(--blue);background:linear-gradient(115deg,#fff 0%,#f7fbff 100%);font-size:16px;line-height:1.75;box-shadow:0 8px 25px #163b650f}.intro:after{content:"״";position:absolute;left:24px;top:-20px;color:#0b3a6f0d;font-size:120px;font-family:Georgia,serif}.intro p,.intro blockquote{position:relative;z-index:1}.intro p{margin:0}.intro p+p{margin-top:10px}.intro blockquote{margin:15px 0;padding:13px 18px;background:#eaf2fb;border:1px solid #cfdeef;border-radius:9px;color:var(--blue);font-weight:700}.intro cite{display:block;margin-top:6px;color:var(--muted);font-size:13px;font-style:normal;font-weight:400}.intro a{color:var(--blue)}.intro .contact{font-weight:700;color:var(--blue)}.intro .contact small{display:block;margin-top:8px;color:var(--muted);font-size:12px;font-weight:400}.report-button{display:inline-block;margin-inline-start:7px;padding:9px 16px;border-radius:9px;background:linear-gradient(120deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 4px 12px #0b3a6f33;font-size:14px;font-weight:700;line-height:1.4}
+    .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}.kpi{position:relative;overflow:hidden;padding:19px 20px;border:0;border-top:4px solid var(--blue);box-shadow:0 7px 20px #163b6510;transition:.2s ease}.kpi:after{content:"";position:absolute;left:-22px;bottom:-32px;width:90px;height:90px;border-radius:50%;background:#0b3a6f08}.kpi:nth-child(2){border-top-color:#2f7d73}.kpi:nth-child(3){border-top-color:#8e3653}.kpi:nth-child(4){border-top-color:#6b5aa6}.kpi:nth-child(5){border-top-color:#287ca8}.kpi:hover{transform:translateY(-2px);box-shadow:0 10px 25px #163b6518}.kpi span,.kpi small{position:relative;z-index:1;display:block;color:var(--muted);font-size:13px}.kpi span{font-weight:700;color:#445168}.kpi strong{position:relative;z-index:1;display:block;font-size:35px;margin:8px 0 4px;line-height:1.1;color:var(--blue)}.kpi.text strong{font-size:24px;overflow-wrap:anywhere}
+    .charts{display:grid;grid-template-columns:1fr 1fr;gap:18px}.chart-card{padding:18px;min-height:360px}.chart-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.chart-head.compact{justify-content:flex-start;align-items:baseline;gap:7px}.chart-head h2{font-size:18px;margin:0}.chart-head span{color:var(--muted);font-size:12px}.chart-wrap{height:290px;position:relative}.timeline{grid-column:1/-1;min-height:330px}.timeline .chart-wrap{height:260px}.attacked-card{border-top:4px solid #287ca8}.attacked-card .chart-wrap{height:315px}.chart-summary{margin:0 0 5px;color:var(--muted);font-size:12px;text-align:center}
+    .table-card{margin-top:18px;padding:18px}.table-scroll{overflow:auto;margin:15px -18px 0}table{border-collapse:collapse;width:100%;min-width:1100px;font-size:13px}th{background:#eef2f6;color:#39475d;padding:11px 12px;text-align:right;white-space:nowrap;border-block:1px solid var(--line)}td{padding:12px;border-bottom:1px solid #e5e9ef;vertical-align:top}tbody tr:hover td{background:#fafbfd}.desc{max-width:420px;line-height:1.55}.desc a{color:#12518d;text-decoration:none}.desc a:hover{text-decoration:underline}.impact{font-weight:800;white-space:nowrap}.pager{display:flex;justify-content:center;align-items:center;gap:15px;padding-top:16px}.pager button{border:1px solid #aeb8c7;background:#fff;color:var(--blue);border-radius:7px;padding:8px 14px;font-weight:700;cursor:pointer}.pager button:disabled{opacity:.35;cursor:default}.pager span{font-size:13px;color:var(--muted)}footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}footer a{color:var(--blue);font-weight:700;text-decoration:none}footer a:hover{text-decoration:underline}.footer-sep{margin:0 8px;color:#9aa8bb}
+    .topbar-inner{flex-direction:column;justify-content:center;text-align:center;gap:14px}.top-actions{justify-content:center}.intro,.kpi{text-align:center}
+    .modal-overlay{position:fixed;inset:0;background:#09203c8c;display:none;align-items:center;justify-content:center;z-index:500;padding:24px;backdrop-filter:blur(2px)}.modal-overlay.open{display:flex}
+    .modal-box{background:#fff;border-radius:14px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px #09204030;border-top:4px solid var(--blue)}.modal-box.wide{max-width:720px}
+    .modal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:18px 24px 14px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}
+    .modal-head h2{font-size:17px;margin:0;color:var(--blue)}.modal-head p{margin:2px 0 0;font-size:12px;color:var(--muted)}
+    .modal-close{width:30px;height:30px;flex-shrink:0;border:none;border-radius:8px;background:#eef4fb;color:var(--blue);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}.modal-close:hover{background:#dbe8f7}
+    .modal-body{padding:20px 24px 24px;font-size:14.5px;line-height:1.85;color:var(--ink)}.modal-body p{margin:0}.modal-body p+p{margin-top:15px}
+    .modal-body p:nth-of-type(2){border-right:3px solid #6b5aa6;padding-right:13px}.modal-body p:nth-of-type(3){border-right:3px solid #8e3653;padding-right:13px}
+    .modal-contact{margin-top:20px;padding:15px 17px;background:#eaf2fb;border:1px solid #cfdeef;border-radius:9px;color:var(--blue)}.modal-contact a{color:var(--blue);font-weight:700}
+    .record-item{padding:12px 0;border-bottom:1px solid var(--line)}.record-item:last-child{border-bottom:0}
+    .record-date{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:3px}
+    .record-desc{font-size:14px;line-height:1.5}.record-desc a{color:#12518d;text-decoration:none}.record-desc a:hover{text-decoration:underline}
+    .record-meta{font-size:12px;color:var(--muted);margin-top:4px}
+    .record-empty{color:var(--muted);font-size:14px;text-align:center;padding:24px 0}
+    .modal-footer{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 24px;text-align:center}
+    .modal-footer button{border:1px solid #9aa8bb;background:#fff;color:var(--blue);border-radius:7px;padding:8px 14px;font-weight:700;cursor:pointer}
+    .modal-footer button:hover{background:#eef4fb}
+    .filter-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);display:none;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:12px;box-shadow:0 12px 32px #09204026;padding:12px 16px;z-index:450;max-width:92vw;opacity:0;transition:.25s ease}
+    .filter-toast.open{display:flex;opacity:1;transform:translateX(-50%) translateY(0)}
+    .filter-toast-text{display:flex;flex-direction:column;gap:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .filter-toast-text strong{font-size:13px;color:var(--ink);max-width:38vw;overflow:hidden;text-overflow:ellipsis}
+    .filter-toast-text span{font-size:12px;color:var(--muted)}
+    .filter-toast-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+    .filter-toast-actions .ghost{padding:8px 12px;font-size:13px;white-space:nowrap}
+    .filter-toast-close{width:28px;height:28px;flex-shrink:0;border:none;border-radius:7px;background:#eef4fb;color:var(--blue);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .filter-toast-close:hover{background:#dbe8f7}
+    @media(max-width:560px){.filter-toast{flex-wrap:wrap;bottom:12px;padding:12px}.filter-toast-text strong{max-width:70vw}}
+    @media(max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:900px){.filter-grid{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:1fr 1fr}.charts{grid-template-columns:1fr}.timeline{grid-column:auto}.topbar{position:static}}
+    @media(max-width:560px){.topbar:after{display:none}.topbar-inner{align-items:center;flex-direction:column;padding:17px}.topbar h1{font-size:20px;text-align:center}.top-actions{width:100%}.top-actions button{flex:1}main{padding:13px}.intro{padding:18px}.filter-grid,.kpis{grid-template-columns:1fr}.filter-grid .wide{grid-column:auto}.chart-card{min-height:330px}.chart-wrap{height:260px}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner"><div><p class="eyebrow">מעקב ציבורי</p><h1>תיעוד אמירות ופעולות הפוגעות באמון הציבור בוועדת הבחירות</h1></div><div class="top-actions"><a href="form.html" class="ghost" style="background:#ffffff12;backdrop-filter:blur(5px);color:#fff;border:1px solid #ffffff4d;padding:10px 14px;border-radius:9px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center">📝 דיווח על ידיעה חדשה</a><button id="toggleFilters">🔎 סינון התוצאות</button><button id="reload">רענון נתונים</button></div></div></header>
+  <main>
+    <div id="notice" class="notice">טוען נתונים מהגיליון...</div>
+    <section id="filtersCard" class="card"><div class="section-head"><div><h2>סינון התוצאות</h2><p>כל המדדים, התרשימים והטבלה מתעדכנים מיד.</p></div><button id="clear" class="ghost">ניקוי הכל</button></div>
+      <div class="filter-grid">
+        <label>מתאריך<input id="fromDate" type="date"></label><label>עד תאריך<input id="toDate" type="date"></label>
+        <label>מהות הפעולה<select id="actionFilter"><option value="">הכל</option></select></label><label>השפעה<select id="impactFilter"><option value="">הכל</option></select></label>
+        <label>יעד הפרסום<select id="targetFilter"><option value="">הכל</option></select></label><label>שיוך מפלגתי<select id="partyFilter"><option value="">הכל</option></select></label>
+        <label>איפה פורסם<select id="publishedFilter"><option value="">הכל</option></select></label><label>גורם<select id="actorFilter"><option value="">הכל</option></select></label><label>בעל התפקיד המותקף<select id="attackedFilter"><option value="">הכל</option></select></label><label class="wide">חיפוש חופשי<input id="searchFilter" placeholder="מילים בתיאור, בהערות או בשם הגורם"></label>
+      </div>
+    </section>
+    <section class="card intro"><blockquote>״השמירה על טוהר הבחירות, והבטחת אמון הציבור, זו גם זו, היא משימה לאומית״.<cite>השופט נעם סולברג, יו״ר ועדת הבחירות המרכזית - <a href="https://main.knesset.gov.il/News/PressReleases/Pages/press27.07.26.aspx" target="_blank" rel="noopener">למקור</a></cite></blockquote><p>פלטפורמה זו מרכזת ומנגישה את כלל האמירות של חברי וחברות כנסת, נציגי ודוברי מפלגות ואנשי תקשורת בנוגע לוועדת הבחירות, שיש בהן כדי לערער את אמון הציבור בוועדה, בתקינות הליך הבחירות ובתוצאותיו. המידע נאסף מפרסומים באמצעי התקשורת וברשתות החברתיות ומפולח לצפייה ולניתוח.</p><p class="contact">נתקלתם באמירה מסוג זה? <span class="report-button">דווחו כאן</span><small>(הדיווחים ייכללו במאגר לאחר בדיקה ואישור)</small></p></section>
+    <section class="kpis"><article class="card kpi text"><span>סה״כ אמירות</span><strong id="kpiTotal">0</strong><small id="kpiTotalSub">במאגר</small></article><article class="card kpi text"><span>כלי תקשורת מוביל</span><strong id="kpiPlatform">-</strong><small id="kpiPlatformSub">ללא נתונים</small></article><article class="card kpi text"><span>הגורם המוביל</span><strong id="kpiActor">-</strong><small id="kpiActorSub">ללא נתונים</small></article><article class="card kpi text"><span>המפלגה המובילה</span><strong id="kpiParty">-</strong><small id="kpiPartySub">ללא נתונים</small></article><article class="card kpi text"><span>הגורם המותקף ביותר</span><strong id="kpiAttacked">-</strong><small id="kpiAttackedSub">ללא נתונים</small></article></section>
+    <section class="charts">
+      <article class="card chart-card timeline"><div class="chart-head compact"><h2>פילוח אמירות על ציר הזמן</h2><span>לחצו על נקודה לסינון</span></div><div class="chart-wrap"><canvas id="timelineChart"></canvas></div></article>
+      <article class="card chart-card"><div class="chart-head"><h2>הגורמים הבולטים</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="actorChart"></canvas></div></article>
+      <article class="card chart-card"><div class="chart-head"><h2>איפה פורסם</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="publishedChart"></canvas></div></article>
+      <article class="card chart-card timeline"><div class="chart-head"><h2>שיוך מפלגתי</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="partyChart"></canvas></div></article>
+      <article class="card chart-card"><div class="chart-head"><h2>יעד הפרסום</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="targetChart"></canvas></div></article>
+      <article class="card chart-card attacked-card"><div class="chart-head"><h2>בעלי התפקידים המותקפים</h2><span>לחצו על פלח לסינון</span></div><p id="attackedSummary" class="chart-summary">כל בעל תפקיד נספר בנפרד</p><div class="chart-wrap"><canvas id="attackedChart"></canvas></div></article>
+      <article class="card chart-card timeline"><div class="chart-head"><h2>מהות הפעולה</h2><span>לחצו על פלח לסינון</span></div><div class="chart-wrap"><canvas id="actionChart"></canvas></div></article>
+    </section>
+    <section id="tableCard" class="card table-card"><div class="section-head"><div><h2>רשומות</h2><p id="tableSummary"></p></div><button id="downloadCsv" class="ghost">הורדת CSV</button></div><div class="table-scroll"><table><thead><tr><th>תאריך</th><th>תיאור קצר</th><th>גורם</th><th>מהות הפעולה</th><th>איפה פורסם</th><th>יעד</th><th>שיוך</th><th>בעל התפקיד המותקף</th></tr></thead><tbody id="tableBody"></tbody></table></div><div class="pager"><button id="prev">הקודם</button><span id="pageInfo"></span><button id="next">הבא</button></div></section>
+    <footer><a href="#" onclick="openDisclaimer(event)">הבהרה</a></footer>
+  </main>
+
+  <!-- Disclaimer Modal -->
+  <div class="modal-overlay" id="disclaimerOverlay" onclick="if(event.target===this) closeDisclaimer()">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle">
+      <div class="modal-head">
+        <h2 id="disclaimerTitle">הבהרה</h2>
+        <button type="button" class="modal-close" onclick="closeDisclaimer()" aria-label="סגירה">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>המערכת נועדה לתעד ולהנגיש לציבור אמירות ופעולות שיש בהן, לדעת צוות המיזם, כדי לפגוע באמון הציבור בוועדת הבחירות המרכזית, בתקינות הליך הבחירות או בתוצאותיו.</p>
+        <p>המידע במערכת מבוסס על פרסומים גלויים באמצעי התקשורת וברשתות החברתיות. כל פריט נבדק ומסווג בהתאם למתודולוגיה שנקבעה מראש, אולם הסיווג כולל מטבעו גם שיקול דעת מקצועי ואינו מהווה קביעה משפטית, קביעה בדבר כוונת הדובר או טענה לביצוע עבירה.</p>
+        <p>המערכת אינה מתיימרת להציג את כלל הפרסומים בנושא, וייתכנו בה טעויות, אי-דיוקים או מידע חסר. הקישורים למקורות החיצוניים מובאים לצורך תיעוד והקשר בלבד, והמיזם אינו אחראי לתוכנם או לזמינותם.</p>
+        <p class="modal-contact">אנו מחויבים לדיוק, להוגנות ולשקיפות. ניתן לפנות אלינו בכתובת <a href="mailto:electiontrust2026@gmail.com">electiontrust2026@gmail.com</a> בבקשה לתיקון, להשלמת מידע או להצגת הבהרה. כל פנייה תיבחן לגופה, ובמידת הצורך יעודכן המידע במערכת.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Records Modal (view items behind a chart click) -->
+  <div class="modal-overlay" id="recordsOverlay" onclick="if(event.target===this) closeRecordsModal()">
+    <div class="modal-box wide" role="dialog" aria-modal="true" aria-labelledby="recordsModalTitle">
+      <div class="modal-head">
+        <div><h2 id="recordsModalTitle">ידיעות מסוננות</h2><p id="recordsModalCount"></p></div>
+        <button type="button" class="modal-close" onclick="closeRecordsModal()" aria-label="סגירה">✕</button>
+      </div>
+      <div class="modal-body" id="recordsModalBody"></div>
+      <div class="modal-footer"><button type="button" onclick="goToTable()">לצפייה בטבלה המלאה</button></div>
+    </div>
+  </div>
+
+  <!-- Filter toast (shown after clicking a chart element) -->
+  <div class="filter-toast" id="filterToast">
+    <div class="filter-toast-text"><strong id="filterToastLabel"></strong><span id="filterToastCount"></span></div>
+    <div class="filter-toast-actions">
+      <button type="button" class="ghost" onclick="viewFilteredRecords()">צפייה בידיעות</button>
+      <button type="button" class="ghost" onclick="resetChartFilter()">איפוס סינון</button>
+      <button type="button" class="filter-toast-close" onclick="hideFilterToast()" aria-label="סגירה">✕</button>
+    </div>
+  </div>
+  <script>
+    const SHEET_ID='1x3LfKEuG82nbyiGMicy__IqGLXT98e57SXHQfqfpm3k';
+    const SHEET_URL=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing`;
+    const $=id=>document.getElementById(id), charts={}; let allRows=[], filteredRows=[], page=1;
+    const impactColors={'מחליש מאוד':'#b91c1c','מחליש':'#dc2626','מחליש קצת':'#f97316','מחזק קצת':'#16a34a','מחזק':'#047857'};
+    const defaultAttackedRoles={'נעם סולברג':'יו״ר ועדת הבחירות המרכזית','יפעת סימינובסקי':'היועצת המשפטית של ועדת הבחירות','דין ליבנה':'מ״מ מנכ״ל ועדת הבחירות המרכזית','לילך ויסמן':'דוברת ועדת הבחירות'};
+    const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const canonical=s=>String(s||'').trim().replace(/\s+/g,' ')
+      .replace('אחר (פרטו בהערות)','אחר')
+      .replace("החלטות מנהליות (הצבת מצלמות, מעטפות כפולות וכו')",'החלטות מנהליות')
+      .replace('יעקב בורדוגו','יעקב ברדוגו')
+      .replace('קואצליציה','קואליציה')
+      .replace('איזורי','אזורי')
+      .replace('בערוץ ערוץ 14','בערוץ 14');
+    const parseDate=s=>{const m=String(s||'').trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);return m?`${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`:''};
+    const displayDate=s=>{const [y,m,d]=s.split('-');return y&&m&&d?`${d}.${m}.${y}`:s};
+    const uniq=a=>[...new Set(a.filter(Boolean))].sort((x,y)=>x.localeCompare(y,'he'));
+    const tally=a=>Object.entries(a.reduce((o,x)=>(x&&(o[x]=(o[x]||0)+1),o),{})).sort((a,b)=>b[1]-a[1]);
+    const splitList=s=>String(s||'').split(/[,،，;]/).map(canonical).filter(Boolean);
+    function cellValue(c){if(!c)return '';if(c.f!=null)return String(c.f);return c.v==null?'':String(c.v)}
+    function handleSheet(resp){
+      try{if(!resp||resp.status!=='ok')throw Error();const cols=resp.table.cols.map(c=>c.label||c.id);const idx=n=>cols.indexOf(n);const attackedIndex=['בעל התפקיד המותקף','בעלי התפקידים המותקפים','בעל תפקיד מותקף'].map(idx).find(i=>i>=0)??11;const approvedIndex=['אושר לפרסום'].map(idx).find(i=>i>=0);
+        allRows=resp.table.rows.map(x=>{const c=x.c||[];const raw=cellValue(c[idx('תאריך')]);const approvedRaw=approvedIndex!=null?cellValue(c[approvedIndex]).trim().toLowerCase():'1';const approved=approvedIndex==null?true:(approvedRaw==='1'||approvedRaw==='true');return {date:parseDate(raw),description:cellValue(c[idx('תיאור קצר')]).trim(),link:cellValue(c[idx('קישור לידיעה')]).trim(),action:canonical(cellValue(c[idx('מהות הפעולה')])),actors:splitList(cellValue(c[idx('מי הגורמ/ים')])),published:canonical(cellValue(c[idx('איפה פורסם')])),target:canonical(cellValue(c[idx('יעד הפרסום')])),impact:canonical(cellValue(c[idx('השפעה על התהליך')])),notes:cellValue(c[idx('הערות')]).trim(),party:canonical(cellValue(c[idx('שיוך מפלגתי')])),role:canonical(cellValue(c[idx('תפקיד הגורם הראשי')])),attacked:splitList(cellValue(c[attackedIndex])),approved}}).filter(r=>r.date&&r.description&&r.approved).sort((a,b)=>b.date.localeCompare(a.date));
+        populateFilters();$('notice').classList.add('hidden');applyFilters();
+      }catch(e){showError()}
+    }
+    function loadData(){
+      $('notice').className='notice';$('notice').textContent='טוען נתונים מהגיליון...';document.querySelectorAll('script[data-sheet]').forEach(s=>s.remove());
+      const s=document.createElement('script');s.dataset.sheet='1';s.onerror=showError;s.src=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?headers=1&tqx=responseHandler:handleSheet&tq=${encodeURIComponent('select *')}&_=${Date.now()}`;document.body.appendChild(s);
+    }
+    function showError(){$('notice').className='notice error';$('notice').innerHTML=`לא ניתן לטעון את הגיליון. ודאו שהגיליון משותף לצפייה. <a href="${SHEET_URL}" target="_blank">פתיחת הגיליון</a>`}
+    function populateFilters(){
+      const sets={actionFilter:uniq(allRows.map(r=>r.action)),impactFilter:uniq(allRows.map(r=>r.impact)),targetFilter:uniq(allRows.map(r=>r.target)),partyFilter:uniq(allRows.map(r=>r.party)),publishedFilter:uniq(allRows.map(r=>r.published)),actorFilter:uniq(allRows.flatMap(r=>r.actors)),attackedFilter:uniq(allRows.flatMap(r=>r.attacked))};
+      Object.entries(sets).forEach(([id,vals])=>{$(id).innerHTML='<option value="">הכל</option>'+vals.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('')});
+      const dates=allRows.map(r=>r.date).sort();if(dates.length){$('fromDate').value=dates[0];$('toDate').value=dates.at(-1)}
+    }
+    function filters(){return {from:$('fromDate').value,to:$('toDate').value,action:$('actionFilter').value,impact:$('impactFilter').value,target:$('targetFilter').value,party:$('partyFilter').value,published:$('publishedFilter').value,actor:$('actorFilter').value,attacked:$('attackedFilter').value,q:$('searchFilter').value.trim().toLowerCase()}}
+    function applyFilters(){const f=filters();filteredRows=allRows.filter(r=>(!f.from||r.date>=f.from)&&(!f.to||r.date<=f.to)&&(!f.action||r.action===f.action)&&(!f.impact||r.impact===f.impact)&&(!f.target||r.target===f.target)&&(!f.party||r.party===f.party)&&(!f.published||r.published===f.published)&&(!f.actor||r.actors.includes(f.actor))&&(!f.attacked||r.attacked.includes(f.attacked))&&(!f.q||[r.description,r.notes,...r.actors,...r.attacked].join(' ').toLowerCase().includes(f.q)));page=1;render()}
+    function render(){renderKpis();renderCharts();renderTable()}
+    function renderKpis(){const total=filteredRows.length,leadingActor=tally(filteredRows.flatMap(r=>r.actors))[0],leadingPlatform=tally(filteredRows.map(r=>r.published))[0],leadingParty=tally(filteredRows.map(r=>r.party))[0],leadingAttacked=tally(filteredRows.flatMap(r=>r.attacked))[0];$('kpiTotal').textContent=total.toLocaleString('he-IL');$('kpiTotalSub').textContent=total===allRows.length?'במאגר':`מתוך ${allRows.length.toLocaleString('he-IL')} אמירות במאגר`;$('kpiActor').textContent=leadingActor?.[0]||'-';$('kpiActorSub').textContent=leadingActor?`${leadingActor[1]} אמירות בתוצאות המסוננות`:'ללא נתונים';$('kpiPlatform').textContent=leadingPlatform?.[0]||'-';$('kpiPlatformSub').textContent=leadingPlatform?`${leadingPlatform[1]} אמירות בתוצאות המסוננות`:'ללא נתונים';$('kpiParty').textContent=leadingParty?.[0]||'-';$('kpiPartySub').textContent=leadingParty?`${leadingParty[1]} אמירות בתוצאות המסוננות`:'ללא נתונים';$('kpiAttacked').textContent=leadingAttacked?.[0]||'-';$('kpiAttackedSub').textContent=leadingAttacked?`${leadingAttacked[1]} אזכורים בתוצאות המסוננות`:'ללא נתונים'}
+    function makeChart(id,type,entries,color,onClick){
+      if(charts[id])charts[id].destroy();
+      const ctx=$(id),labels=entries.map(x=>x[0]),data=entries.map(x=>x[1]);
+      const chartMax=Math.max(1,...data);
+      charts[id]=new Chart(ctx,{
+        type,
+        data:{labels,datasets:[{data,backgroundColor:Array.isArray(color)?color:color,borderWidth:0,borderRadius:type==='bar'?4:0,barThickness:type==='bar'?20:undefined,maxBarThickness:type==='bar'?20:undefined}]},
+        options:{
+          responsive:true,maintainAspectRatio:false,indexAxis:type==='bar'?'y':'x',
+          cutout:type==='doughnut'?'58%':undefined,
+          layout:type==='bar'?{padding:{right:18}}:{},
+          onClick:(e,els)=>{if(onClick&&els.length)onClick(labels[els[0].index])},
+          plugins:{
+            legend:{display:type==='doughnut',position:'bottom',align:'center',labels:{font:{family:'Arial'},boxWidth:12,padding:14}},
+            datalabels:{
+              color:type==='doughnut'?'#fff':'#172033',
+              anchor:type==='bar'?'end':'center',
+              align:type==='bar'?'right':'center',
+              offset:type==='bar'?12:0,
+              clip:false,clamp:false,
+              textAlign:'center',font:{weight:'bold',size:type==='doughnut'?13:undefined},formatter:(v,ctx)=>{if(type!=='doughnut')return v;const total=ctx.dataset.data.reduce((sum,n)=>sum+n,0);return `${total?Math.round(v/total*100):0}%`}
+            }
+          },
+          scales:type==='doughnut'?{}:{
+            x:{display:false,beginAtZero:true,suggestedMax:Math.ceil(chartMax*1.15),grid:{display:false},border:{display:false}},
+            y:{grid:{display:false},border:{display:false}}
+          }
+        },plugins:[ChartDataLabels]
+      })
+    }
+    const attackedLabelsPlugin={id:'attackedLabels',afterDatasetsDraw(chart,args,options){const meta=chart.getDatasetMeta(0),labels=chart.data.labels||[],roles=options.roles||{},colors=chart.data.datasets[0].backgroundColor||[];if(!meta.data.length)return;const ctx=chart.ctx,minY=24,maxY=chart.height-28,gap=38;const points=meta.data.map((arc,i)=>{const angle=(arc.startAngle+arc.endAngle)/2,cos=Math.cos(angle),sin=Math.sin(angle);return {i,arc,side:cos>=0?'right':'left',angle,desired:arc.y+sin*(arc.outerRadius+18)}});['left','right'].forEach(side=>{const group=points.filter(p=>p.side===side).sort((a,b)=>a.desired-b.desired);group.forEach((p,i)=>p.y=Math.max(p.desired,i?group[i-1].y+gap:minY));if(group.length&&group.at(-1).y>maxY){const shift=group.at(-1).y-maxY;group.forEach(p=>p.y-=shift)}group.forEach((p,i)=>{if(i&&p.y-group[i-1].y<gap)p.y=group[i-1].y+gap})});ctx.save();ctx.direction='rtl';points.forEach(p=>{const {arc,angle,i,side,y}=p,color=Array.isArray(colors)?colors[i%colors.length]:colors,x0=arc.x+Math.cos(angle)*(arc.outerRadius+2),y0=arc.y+Math.sin(angle)*(arc.outerRadius+2),x1=arc.x+Math.cos(angle)*(arc.outerRadius+16),lineEnd=side==='right'?chart.width-112:112,textX=side==='right'?chart.width-8:8,maxWidth=Math.max(68,Math.min(112,chart.width*.23));ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y);ctx.lineTo(lineEnd,y);ctx.stroke();ctx.fillStyle=color;ctx.beginPath();ctx.arc(x0,y0,2.5,0,Math.PI*2);ctx.fill();ctx.textAlign=side==='right'?'right':'left';ctx.fillStyle='#172033';ctx.font='700 12px Arial';ctx.fillText(shortCanvasText(ctx,labels[i],maxWidth),textX,y-3);const role=roles[labels[i]]||'';if(role){ctx.fillStyle='#667085';ctx.font='10px Arial';ctx.fillText(shortCanvasText(ctx,role,maxWidth),textX,y+12)}});ctx.restore()}};
+    const attackedPercentagesPlugin={id:'attackedPercentages',afterDatasetsDraw(chart){const meta=chart.getDatasetMeta(0),data=chart.data.datasets[0].data||[],total=data.reduce((sum,n)=>sum+n,0);if(!meta.data.length||!total)return;const ctx=chart.ctx;ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='700 11px Arial';ctx.fillStyle='#fff';ctx.strokeStyle='rgba(0,0,0,.18)';ctx.lineWidth=2;meta.data.forEach((arc,i)=>{const pct=Math.round(data[i]/total*100);if(pct<3)return;const angle=(arc.startAngle+arc.endAngle)/2,radius=arc.innerRadius+(arc.outerRadius-arc.innerRadius)*.58,x=arc.x+Math.cos(angle)*radius,y=arc.y+Math.sin(angle)*radius,label=`${pct}%`;ctx.strokeText(label,x,y);ctx.fillText(label,x,y)});ctx.restore()}};
+    function shortCanvasText(ctx,text,maxWidth){text=String(text||'');if(ctx.measureText(text).width<=maxWidth)return text;while(text.length>3&&ctx.measureText(text+'...').width>maxWidth)text=text.slice(0,-1);return text+'...'}
+    function makeAttackedChart(entries,roles,onClick){const id='attackedChart';if(charts[id])charts[id].destroy();const labels=entries.map(x=>x[0]),data=entries.map(x=>x[1]),colors=['#0b3a6f','#2f7d73','#6b5aa6','#a96e1d','#8e3653','#287ca8','#bd6f3a','#4f667c','#7b8f43','#b04b66','#4d7895','#8a6a3c'];charts[id]=new Chart($(id),{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderColor:'#fff',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',layout:{padding:{left:115,right:115,top:8,bottom:8}},onClick:(e,els)=>{if(onClick&&els.length)onClick(labels[els[0].index])},plugins:{legend:{display:false},attackedLabels:{roles},datalabels:{display:false}}},plugins:[attackedPercentagesPlugin,attackedLabelsPlugin]})}
+    function renderCharts(){
+      const months=tally(filteredRows.map(r=>r.date.slice(0,7))).sort((a,b)=>a[0].localeCompare(b[0]));if(charts.timelineChart)charts.timelineChart.destroy();charts.timelineChart=new Chart($('timelineChart'),{type:'line',data:{labels:months.map(x=>x[0].split('-').reverse().join('/')),datasets:[{data:months.map(x=>x[1]),borderColor:'#1f4e79',backgroundColor:'rgba(31,78,121,.10)',borderWidth:3,pointRadius:4,pointHoverRadius:6,pointBackgroundColor:'#1f4e79',pointBorderColor:'#fff',pointBorderWidth:2,tension:.28,fill:true}]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:25,left:8,right:8}},interaction:{mode:'nearest',intersect:true},onClick:(e,els)=>{if(els.length)selectMonth(months[els[0].index][0])},plugins:{legend:{display:false},datalabels:{color:'#172033',anchor:'end',align:'top',offset:5,clip:false,clamp:false,font:{weight:'bold'}}},scales:{y:{display:false,beginAtZero:true},x:{grid:{display:false},border:{display:false}}}},plugins:[ChartDataLabels]});
+      makeChart('actionChart','doughnut',tally(filteredRows.map(r=>r.action)),['#1f4e79','#2f7d73','#6b5aa6','#a96e1d','#8e3653','#4d7895'],v=>selectAndApply('actionFilter',v));
+      makeChart('actorChart','bar',tally(filteredRows.flatMap(r=>r.actors)).slice(0,8),'#8e3653',v=>selectAndApply('actorFilter',v));
+      makeChart('targetChart','bar',tally(filteredRows.map(r=>r.target)).slice(0,8),'#a96e1d',v=>selectAndApply('targetFilter',v));
+      makeChart('publishedChart','bar',tally(filteredRows.map(r=>r.published)).slice(0,8),'#2f7d73',v=>selectAndApply('publishedFilter',v));
+      makeChart('partyChart','bar',tally(filteredRows.map(r=>r.party)).slice(0,8),'#6b5aa6',v=>selectAndApply('partyFilter',v));
+      const attackedEntries=tally(filteredRows.flatMap(r=>r.attacked)),attackedMentions=attackedEntries.reduce((sum,x)=>sum+x[1],0),taggedRows=filteredRows.filter(r=>r.attacked.length).length,attackedRoleMap={...defaultAttackedRoles};$('attackedSummary').textContent=attackedMentions?`${attackedMentions.toLocaleString('he-IL')} אזכורים ב-${taggedRows.toLocaleString('he-IL')} ידיעות. כל בעל תפקיד נספר בנפרד`:'אין תיוגים של בעלי תפקידים בתוצאות המסוננות';
+      makeAttackedChart(attackedEntries,attackedRoleMap,v=>selectAndApply('attackedFilter',v));
+    }
+    function selectMonth(month){const [year,monthNumber]=month.split('-'),lastDay=String(new Date(Number(year),Number(monthNumber),0).getDate()).padStart(2,'0');$('fromDate').value=`${month}-01`;$('toDate').value=`${month}-${lastDay}`;applyFilters();showFilterToast(`חודש ${month.split('-').reverse().join('/')}`)}
+    function selectAndApply(id,v){$(id).value=v;applyFilters();showFilterToast(v)}
+    let lastFilterLabel='';
+    function showFilterToast(labelText){
+      lastFilterLabel=labelText;
+      $('filterToastLabel').textContent=labelText?`סינון פעיל: ${labelText}`:'סינון פעיל';
+      $('filterToastCount').textContent=`${filteredRows.length.toLocaleString('he-IL')} תוצאות`;
+      $('filterToast').classList.add('open');
+    }
+    function hideFilterToast(){$('filterToast').classList.remove('open')}
+    function viewFilteredRecords(){openRecordsModal(lastFilterLabel)}
+    function resetChartFilter(){clearFilters();hideFilterToast()}
+    function openRecordsModal(labelText){
+      const rows=filteredRows;
+      $('recordsModalTitle').textContent=labelText?`ידיעות: ${labelText}`:'ידיעות מסוננות';
+      $('recordsModalCount').textContent=`${rows.length.toLocaleString('he-IL')} רשומות תואמות לסינון הנוכחי`;
+      $('recordsModalBody').innerHTML=rows.length?rows.map(r=>`<div class="record-item"><div class="record-date">${displayDate(r.date)}</div><div class="record-desc">${r.link?`<a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.description)} ↗</a>`:esc(r.description)}</div><div class="record-meta">${esc(r.actors.join(', ')||'-')}${r.party?' · '+esc(r.party):''}${r.published?' · '+esc(r.published):''}</div></div>`).join(''):'<p class="record-empty">לא נמצאו ידיעות תואמות.</p>';
+      $('recordsOverlay').classList.add('open');
+    }
+    function closeRecordsModal(){$('recordsOverlay').classList.remove('open')}
+    function goToTable(){closeRecordsModal();$('tableCard').scrollIntoView({behavior:'smooth',block:'start'})}
+    function openDisclaimer(e){if(e)e.preventDefault();$('disclaimerOverlay').classList.add('open')}
+    function closeDisclaimer(){$('disclaimerOverlay').classList.remove('open')}
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDisclaimer();closeRecordsModal();hideFilterToast()}});
+    function renderTable(){const per=10,pages=Math.max(1,Math.ceil(filteredRows.length/per));if(page>pages)page=pages;const rows=filteredRows.slice((page-1)*per,page*per);$('tableSummary').textContent=`מוצגות ${rows.length} מתוך ${filteredRows.length} רשומות`;$('tableBody').innerHTML=rows.map(r=>`<tr><td>${displayDate(r.date)}</td><td class="desc">${r.link?`<a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.description)} ↗</a>`:esc(r.description)}</td><td>${esc(r.actors.join(', '))}</td><td>${esc(r.action)}</td><td>${esc(r.published)}</td><td>${esc(r.target)}</td><td>${esc(r.party||'-')}</td><td>${esc(r.attacked.join(', ')||'-')}</td></tr>`).join('');$('pageInfo').textContent=`עמוד ${page} מתוך ${pages}`;$('prev').disabled=page===1;$('next').disabled=page===pages}
+    function clearFilters(){['actionFilter','impactFilter','targetFilter','partyFilter','publishedFilter','actorFilter','attackedFilter','searchFilter'].forEach(id=>$(id).value='');const dates=allRows.map(r=>r.date).sort();$('fromDate').value=dates[0]||'';$('toDate').value=dates.at(-1)||'';applyFilters();hideFilterToast()}
+    function downloadCsv(){const headers=['תאריך','תיאור קצר','קישור לידיעה','מהות הפעולה','מי הגורמ/ים','איפה פורסם','יעד הפרסום','השפעה על התהליך','הערות','שיוך מפלגתי','תפקיד הגורם הראשי','בעל התפקיד המותקף'];const values=r=>[displayDate(r.date),r.description,r.link,r.action,r.actors.join(', '),r.published,r.target,r.impact,r.notes,r.party,r.role,r.attacked.join(', ')];const csv='\ufeff'+[headers,...filteredRows.map(values)].map(row=>row.map(v=>`"${String(v||'').replaceAll('"','""')}"`).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='election_trust_filtered.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+    $('toggleFilters').onclick=()=>{const open=$('filtersCard').classList.toggle('open');$('toggleFilters').textContent=open?'✕ סגירת מסננים':'🔎 סינון התוצאות';if(open)$('filtersCard').scrollIntoView({behavior:'smooth',block:'start'})};$('reload').onclick=loadData;$('clear').onclick=clearFilters;$('prev').onclick=()=>{page--;renderTable()};$('next').onclick=()=>{page++;renderTable()};$('downloadCsv').onclick=downloadCsv;document.querySelectorAll('#filtersCard input,#filtersCard select').forEach(el=>el.addEventListener(el.tagName==='INPUT'&&el.type==='text'?'input':'change',applyFilters));
+    loadData();
+  </script>
+</body>
+</html>
