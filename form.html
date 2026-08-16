@@ -1170,6 +1170,12 @@ function populateSelect(id, values) {
   });
 }
 
+
+function normalizeTargetValue(value) {
+  const str = String(value || '').trim();
+  return str.replace(/\(([^)]*)\)/g, (_, inner) => `(${inner.replace(/,\s*/g, ' • ')})`);
+}
+
 function populateTargetOptions(values) {
   const wrap = document.getElementById('fTarget');
   wrap.innerHTML = '';
@@ -1177,16 +1183,18 @@ function populateTargetOptions(values) {
     const item = document.createElement('div');
     item.className = 'target-option';
 
+    const normalizedValue = normalizeTargetValue(v);
+
     const input = document.createElement('input');
     input.type = 'checkbox';
     input.name = 'target';
-    input.value = v;
+    input.value = normalizedValue;
     input.id = 'fTarget_' + i;
     input.addEventListener('change', updateAttackedRequirement);
 
     const label = document.createElement('label');
     label.htmlFor = input.id;
-    label.textContent = v;
+    label.textContent = normalizedValue;
 
     item.appendChild(input);
     item.appendChild(label);
