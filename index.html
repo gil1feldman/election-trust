@@ -124,6 +124,27 @@
       .chart-head span{max-width:92px;text-align:left;line-height:1.25}
     }
 
+    /* Mobile: replace hard-to-read charts with a data table (counts + percentages + total) */
+    .mobile-data-table{display:none}
+    @media(max-width:560px){
+      .chart-card.mobile-table{overflow-x:hidden}
+      .chart-card.mobile-table .chart-wrap{display:none}
+      .chart-card.mobile-table .mobile-data-table{display:block;margin-top:4px;width:100%;max-width:100%;box-sizing:border-box}
+      .mobile-data-table .mdt-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:7px 6px;border-bottom:1px solid #e5e9ef;font-size:12px}
+      .mobile-data-table .mdt-label{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+      .mobile-data-table .mdt-value{white-space:nowrap;font-weight:700}
+      .mobile-data-table .mdt-pct-inline{color:var(--blue)}
+      .mobile-data-table .mdt-head{background:#eef2f6;color:#39475d;font-weight:700;border-bottom:1px solid var(--line)}
+      .mobile-data-table .mdt-row[data-value]{cursor:pointer}
+      .mobile-data-table .mdt-row[data-value]:active{background:#eef4fb}
+      .mobile-data-table .mdt-more{cursor:pointer;background:#f6fafc;color:var(--blue);font-weight:700}
+      .mobile-data-table .mdt-more:active{background:#eaf2fb}
+      .mobile-data-table .mdt-less{display:block;text-align:center;cursor:pointer;background:#f6fafc;color:var(--blue);font-weight:700}
+      .mobile-data-table .mdt-less:active{background:#eaf2fb}
+      .mobile-data-table .mdt-total{background:#f3f6f9;border-top:2px solid var(--line);font-weight:800}
+      .mobile-data-table .mdt-empty{padding:14px 4px;text-align:center;color:var(--muted);font-size:12px}
+    }
+
 </style>
 </head>
 <body>
@@ -155,12 +176,12 @@
     <section class="kpis"><article class="card kpi text"><span>סה״כ פרסומים במאגר</span><strong id="kpiTotal">0</strong><small id="kpiTotalSub">במאגר</small></article><article class="card kpi text"><span>הפלטפורמה הנפוצה ביותר</span><strong id="kpiPlatform">-</strong><small id="kpiPlatformSub">ללא נתונים</small></article><article class="card kpi text"><span>הדובר/ת הנפוץ/ה ביותר</span><strong id="kpiActor">-</strong><small id="kpiActorSub">ללא נתונים</small></article><article class="card kpi text"><span>השיוך הנפוץ ביותר</span><strong id="kpiParty">-</strong><small id="kpiPartySub">ללא נתונים</small></article><article class="card kpi text"><span>בעל/ת התפקיד המוזכר/ת ביותר</span><strong id="kpiAttacked">-</strong><small id="kpiAttackedSub">ללא נתונים</small></article></section>
     <section class="charts">
       <article class="card chart-card timeline"><div class="chart-head compact"><h2>מספר הפרסומים לאורך זמן</h2><span>לחצו על נקודה לסינון</span></div><div class="chart-wrap"><canvas id="timelineChart"></canvas></div></article>
-      <article class="card chart-card"><div class="chart-head"><h2>דוברים ומפרסמים לפי מספר פרסומים</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="actorChart"></canvas></div></article>
-      <article class="card chart-card"><div class="chart-head"><h2>כלי תקשורת ופלטפורמות</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="publishedChart"></canvas></div></article>
-      <article class="card chart-card timeline"><div class="chart-head"><h2>שיוך מפלגתי</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="partyChart"></canvas></div><p id="partyChartNote" class="chart-note right"><strong>הערה:</strong> נטען...</p></article>
-      <article class="card chart-card"><div class="chart-head"><h2>נושא הפרסום או ההתייחסות</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="targetChart"></canvas></div></article>
-      <article class="card chart-card attacked-card"><div class="chart-head"><h2>בעלי התפקידים שאליהם מתייחסים הפרסומים</h2><span>לחצו על פלח לסינון</span></div><p id="attackedSummary" class="chart-summary">כאשר פרסום מתייחס לכמה בעלי תפקידים, כל אחד מהם נספר בנפרד</p><div class="chart-wrap"><canvas id="attackedChart"></canvas></div><div id="attackedMobileLegend" class="mobile-chart-legend" aria-label="מקרא בעלי תפקידים"></div></article>
-      <article class="card chart-card timeline action-card"><div class="chart-head"><h2>מהות הפעולה</h2><span>לחצו על פלח לסינון</span></div><div class="chart-wrap"><canvas id="actionChart"></canvas></div><div id="actionMobileLegend" class="mobile-chart-legend" aria-label="מקרא מהות הפעולה"></div></article>
+      <article class="card chart-card mobile-table"><div class="chart-head"><h2>דוברים ומפרסמים לפי מספר פרסומים</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="actorChart"></canvas></div><div class="mobile-data-table" id="actorMobileTable"></div></article>
+      <article class="card chart-card mobile-table"><div class="chart-head"><h2>כלי תקשורת ופלטפורמות</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="publishedChart"></canvas></div><div class="mobile-data-table" id="publishedMobileTable"></div></article>
+      <article class="card chart-card timeline mobile-table"><div class="chart-head"><h2>שיוך מפלגתי</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="partyChart"></canvas></div><div class="mobile-data-table" id="partyMobileTable"></div><p id="partyChartNote" class="chart-note right"><strong>הערה:</strong> נטען...</p></article>
+      <article class="card chart-card mobile-table"><div class="chart-head"><h2>נושא הפרסום או ההתייחסות</h2><span>לחצו על העמודה לסינון</span></div><div class="chart-wrap"><canvas id="targetChart"></canvas></div><div class="mobile-data-table" id="targetMobileTable"></div></article>
+      <article class="card chart-card attacked-card mobile-table"><div class="chart-head"><h2>בעלי התפקידים שאליהם מתייחסים הפרסומים</h2><span>לחצו על פלח לסינון</span></div><p id="attackedSummary" class="chart-summary">כאשר פרסום מתייחס לכמה בעלי תפקידים, כל אחד מהם נספר בנפרד</p><div class="chart-wrap"><canvas id="attackedChart"></canvas></div><div class="mobile-data-table" id="attackedMobileTable"></div></article>
+      <article class="card chart-card timeline action-card mobile-table"><div class="chart-head"><h2>מהות הפעולה</h2><span>לחצו על פלח לסינון</span></div><div class="chart-wrap"><canvas id="actionChart"></canvas></div><div class="mobile-data-table" id="actionMobileTable"></div></article>
     </section>
     <section id="tableCard" class="card table-card"><div class="section-head"><div><h2>רשומות</h2><p id="tableSummary"></p></div><button id="downloadCsv" class="ghost">הורדת CSV</button></div><div class="table-scroll"><table><thead><tr><th>תאריך</th><th>תיאור הפרסום</th><th>דובר/ת או מפרסם/ת</th><th>מהות הפעולה</th><th>כלי תקשורת או פלטפורמה</th><th>נושא הפרסום או ההתייחסות</th><th>שיוך מפלגתי</th><th>בעלי התפקידים שאליהם מתייחס הפרסום</th><th>שיתוף</th></tr></thead><tbody id="tableBody"></tbody></table></div><div class="pager"><button id="prev">הקודם</button><span id="pageInfo"></span><button id="next">הבא</button></div></section>
     <footer><a href="#" onclick="openDisclaimer(event)">הבהרה</a><span class="footer-sep">|</span><span>© ענבר טויבר יסעור וגיל פלדמן, 2026</span></footer>
@@ -402,6 +423,34 @@
     const attackedPercentagesPlugin={id:'attackedPercentages',afterDatasetsDraw(chart){const meta=chart.getDatasetMeta(0),data=chart.data.datasets[0].data||[],total=data.reduce((sum,n)=>sum+n,0);if(!meta.data.length||!total)return;const ctx=chart.ctx;ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='700 11px Arial';ctx.fillStyle='#fff';ctx.strokeStyle='rgba(0,0,0,.18)';ctx.lineWidth=2;meta.data.forEach((arc,i)=>{const pct=Math.round(data[i]/total*100);if(pct<3)return;const angle=(arc.startAngle+arc.endAngle)/2,radius=arc.innerRadius+(arc.outerRadius-arc.innerRadius)*.58,x=arc.x+Math.cos(angle)*radius,y=arc.y+Math.sin(angle)*radius,label=`${pct}%`;ctx.strokeText(label,x,y);ctx.fillText(label,x,y)});ctx.restore()}};
     function shortCanvasText(ctx,text,maxWidth){text=String(text||'');if(ctx.measureText(text).width<=maxWidth)return text;while(text.length>3&&ctx.measureText(text+'...').width>maxWidth)text=text.slice(0,-1);return text+'...'}
     function isNarrowMobile(){return window.matchMedia('(max-width:560px)').matches}
+    function renderMobileDataTable(containerId,entries,opts,preserveExpanded){
+      const box=$(containerId);
+      if(!box)return;
+      opts=opts||{};
+      if(!preserveExpanded)box.dataset.expanded='0';
+      if(!entries.length){box.innerHTML='<p class="mdt-empty">אין נתונים להצגה</p>';return}
+      const total=entries.reduce((sum,x)=>sum+x[1],0);
+      const topN=opts.topN||6;
+      const expanded=box.dataset.expanded==='1';
+      const shorten=entries.length>topN&&!expanded;
+      const visible=shorten?entries.slice(0,topN):entries;
+      const rest=shorten?entries.slice(topN):[];
+      const valueHtml=count=>{const pct=total?Math.round(count/total*100):0;return `${count.toLocaleString('he-IL')} <span class="mdt-pct-inline">(${pct}%)</span>`};
+      const rowHtml=([label,count])=>`<div class="mdt-row" data-value="${esc(label)}"><div class="mdt-label">${esc(label)}</div><div class="mdt-value">${valueHtml(count)}</div></div>`;
+      let rows=visible.map(rowHtml).join('');
+      if(rest.length){
+        const restCount=rest.reduce((sum,x)=>sum+x[1],0);
+        rows+=`<div class="mdt-row mdt-more"><div class="mdt-label">▾ היתר (${rest.length} נוספים)</div><div class="mdt-value">${valueHtml(restCount)}</div></div>`;
+      }else if(expanded&&entries.length>topN){
+        rows+=`<div class="mdt-row mdt-less">▲ הצג פחות</div>`;
+      }
+      box.innerHTML=`<div class="mdt-row mdt-head"><div class="mdt-label">${esc(opts.labelHeader||'קטגוריה')}</div><div class="mdt-value">כמות (%)</div></div>${rows}<div class="mdt-row mdt-total"><div class="mdt-label">סה״כ</div><div class="mdt-value">${valueHtml(total)}</div></div>`;
+      if(opts.onClick){box.querySelectorAll('.mdt-row[data-value]').forEach(row=>row.addEventListener('click',()=>opts.onClick(row.dataset.value)))}
+      const moreRow=box.querySelector('.mdt-more');
+      if(moreRow)moreRow.addEventListener('click',()=>{box.dataset.expanded='1';renderMobileDataTable(containerId,entries,opts,true)});
+      const lessRow=box.querySelector('.mdt-less');
+      if(lessRow)lessRow.addEventListener('click',()=>{box.dataset.expanded='0';renderMobileDataTable(containerId,entries,opts,true)});
+    }
     function renderMobileChartLegend(containerId,entries,colors,roles,onClick){
       const box=$(containerId);
       if(!box)return;
@@ -443,7 +492,6 @@
         },
         plugins:[attackedPercentagesPlugin,attackedLabelsPlugin]
       });
-      renderMobileChartLegend('attackedMobileLegend',entries,colors,roles,onClick);
     }
     function makeActionChart(entries,onClick){
       const id='actionChart';
@@ -463,7 +511,6 @@
         },
         plugins:[attackedPercentagesPlugin,actionLabelsPlugin]
       });
-      renderMobileChartLegend('actionMobileLegend',entries,colors,null,onClick);
     }
     function updatePartyChartNote(){
       const excludedRows=filteredRows.filter(r=>!r.party.length||r.party.some(v=>canonical(v)==='ללא'));
@@ -475,14 +522,31 @@
     }
     function renderCharts(){
       const months=tally(filteredRows.map(r=>r.date.slice(0,7))).sort((a,b)=>a[0].localeCompare(b[0]));if(charts.timelineChart)charts.timelineChart.destroy();charts.timelineChart=new Chart($('timelineChart'),{type:'line',data:{labels:months.map(x=>x[0].split('-').reverse().join('/')),datasets:[{data:months.map(x=>x[1]),borderColor:'#0b3a6f',backgroundColor:'rgba(31,78,121,.10)',borderWidth:3,pointRadius:4,pointHoverRadius:6,pointBackgroundColor:'#0b3a6f',pointBorderColor:'#fff',pointBorderWidth:2,tension:.28,fill:true}]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:25,left:8,right:8}},interaction:{mode:'nearest',intersect:true},onClick:(e,els)=>{if(els.length)selectMonth(months[els[0].index][0])},plugins:{legend:{display:false},datalabels:{color:'#172033',anchor:'end',align:'top',offset:5,clip:false,clamp:false,font:{weight:'bold'}}},scales:{y:{display:false,beginAtZero:true},x:{grid:{display:false},border:{display:false}}}},plugins:[ChartDataLabels]});
-      makeActionChart(tally(filteredRows.flatMap(r=>r.action)),v=>selectAndApply('actionFilter',v));
-      makeChart('actorChart','bar',tally(filteredRows.flatMap(r=>r.actors)).slice(0,8),'#2d6f9f',v=>selectAndApply('actorFilter',v));
-      makeChart('targetChart','bar',tally(filteredRows.flatMap(r=>r.target)).slice(0,8),'#2f8796',v=>selectAndApply('targetFilter',v));
-      makeChart('publishedChart','bar',tally(filteredRows.flatMap(r=>r.published)).slice(0,8),'#12a9b8',v=>selectAndApply('publishedFilter',v));
-      makeChart('partyChart','bar',tally(filteredRows.flatMap(r=>r.party).filter(v=>canonical(v)!=='ללא')).slice(0,8),'#4b6f8f',v=>selectAndApply('partyFilter',v));
+
+      const actionEntries=tally(filteredRows.flatMap(r=>r.action));
+      makeActionChart(actionEntries,v=>selectAndApply('actionFilter',v));
+      renderMobileDataTable('actionMobileTable',actionEntries,{labelHeader:'מהות הפעולה',onClick:v=>selectAndApply('actionFilter',v)});
+
+      const actorEntriesFull=tally(filteredRows.flatMap(r=>r.actors));
+      makeChart('actorChart','bar',actorEntriesFull.slice(0,8),'#2d6f9f',v=>selectAndApply('actorFilter',v));
+      renderMobileDataTable('actorMobileTable',actorEntriesFull,{labelHeader:'דובר/ת או מפרסם/ת',onClick:v=>selectAndApply('actorFilter',v)});
+
+      const targetEntriesFull=tally(filteredRows.flatMap(r=>r.target));
+      makeChart('targetChart','bar',targetEntriesFull.slice(0,8),'#2f8796',v=>selectAndApply('targetFilter',v));
+      renderMobileDataTable('targetMobileTable',targetEntriesFull,{labelHeader:'נושא הפרסום או ההתייחסות',onClick:v=>selectAndApply('targetFilter',v)});
+
+      const publishedEntriesFull=tally(filteredRows.flatMap(r=>r.published));
+      makeChart('publishedChart','bar',publishedEntriesFull.slice(0,8),'#12a9b8',v=>selectAndApply('publishedFilter',v));
+      renderMobileDataTable('publishedMobileTable',publishedEntriesFull,{labelHeader:'כלי תקשורת או פלטפורמה',onClick:v=>selectAndApply('publishedFilter',v)});
+
+      const partyEntriesFull=tally(filteredRows.flatMap(r=>r.party).filter(v=>canonical(v)!=='ללא'));
+      makeChart('partyChart','bar',partyEntriesFull.slice(0,8),'#4b6f8f',v=>selectAndApply('partyFilter',v));
+      renderMobileDataTable('partyMobileTable',partyEntriesFull,{labelHeader:'שיוך מפלגתי',onClick:v=>selectAndApply('partyFilter',v)});
       updatePartyChartNote();
+
       const attackedEntries=tally(filteredRows.flatMap(r=>r.attacked)),attackedMentions=attackedEntries.reduce((sum,x)=>sum+x[1],0),taggedRows=filteredRows.filter(r=>r.attacked.length).length,attackedRoleMap={...defaultAttackedRoles};$('attackedSummary').textContent=attackedMentions?`${attackedMentions.toLocaleString('he-IL')} אזכורים ב-${taggedRows.toLocaleString('he-IL')} פרסומים. כאשר פרסום מתייחס לכמה בעלי תפקידים, כל אחד מהם נספר בנפרד`:'אין תיוגים של בעלי תפקידים בתוצאות המסוננות';
       makeAttackedChart(attackedEntries,attackedRoleMap,v=>selectAndApply('attackedFilter',v));
+      renderMobileDataTable('attackedMobileTable',attackedEntries,{labelHeader:'בעל/ת תפקיד',onClick:v=>selectAndApply('attackedFilter',v)});
     }
     function selectMonth(month){const [year,monthNumber]=month.split('-'),lastDay=String(new Date(Number(year),Number(monthNumber),0).getDate()).padStart(2,'0');$('fromDate').value=`${month}-01`;$('toDate').value=`${month}-${lastDay}`;applyFilters();showFilterToast(`חודש ${month.split('-').reverse().join('/')}`)}
     function selectAndApply(id,v){$(id).value=v;applyFilters();showFilterToast(v)}
@@ -512,7 +576,7 @@
     function clearFilters(){['actionFilter','targetFilter','partyFilter','publishedFilter','actorFilter','attackedFilter','searchFilter'].forEach(id=>$(id).value='');const dates=allRows.map(r=>r.date).sort();$('fromDate').value=dates[0]||'';$('toDate').value=dates.at(-1)||'';applyFilters();hideFilterToast()}
     function downloadCsv(){const headers=['תאריך','תיאור הפרסום','קישור לפרסום','מהות הפעולה','דובר/ת או מפרסם/ת','כלי תקשורת או פלטפורמה','נושא הפרסום או ההתייחסות','הערות','שיוך מפלגתי','תפקיד הדובר/ת או המפרסם/ת','בעלי התפקידים שאליהם מתייחס הפרסום'];const values=r=>[displayDate(r.date),r.description,r.link,r.action.join(', '),r.actors.join(', '),r.published.join(', '),r.target.join(', '),r.notes,r.party.join(', '),r.role,r.attacked.join(', ')];const csv='\ufeff'+[headers,...filteredRows.map(values)].map(row=>row.map(v=>`"${String(v||'').replaceAll('"','""')}"`).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='election_trust_filtered.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
     function isMobileDevice(){return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)}
-    function shareRow(e,idx){const r=filteredRows[idx];if(!r)return;const parts=[r.date?`🗓️ תאריך: ${displayDate(r.date)}`:'',r.actors.length?`🗣️ דובר/ת: ${r.actors.join(', ')}`:'',r.action.length?`⚙️ פעולה: ${r.action.join(', ')}`:'',r.published.length?`📢 פלטפורמה: ${r.published.join(', ')}`:'',r.party.length?`🏛️ שיוך: ${r.party.join(', ')}`:'',r.attacked.length?`🎯 מותקף/ים: ${r.attacked.join(', ')}`:'',r.link?`🔗 מקור: ${r.link}`:'',`📊 דשבורד: https://electiontrust.info/`].filter(Boolean);const rawText=parts.join('\n');if(isMobileDevice()){const text=encodeURIComponent(rawText);window.open(`https://wa.me/?text=${text}`,'_blank');return}
+    function shareRow(e,idx){const r=filteredRows[idx];if(!r)return;const lines=['📌 מתוך המאגר הציבורי של ElectionTrust',''];if(r.description)lines.push(`"${r.description}"`,'');if(r.date)lines.push(`🗓️ תאריך: ${displayDate(r.date)}`);if(r.actors.length)lines.push(`🗣️ דובר/ת או מפרסם/ת: ${r.actors.join(', ')}`);if(r.action.length)lines.push(`⚙️ מהות הפעולה: ${r.action.join(', ')}`);if(r.published.length)lines.push(`📢 פורסם ב: ${r.published.join(', ')}`);if(r.party.length)lines.push(`🏛️ שיוך מפלגתי: ${r.party.join(', ')}`);if(r.attacked.length)lines.push(`🎯 מתייחס/ת ל: ${r.attacked.join(', ')}`);if(r.link)lines.push('',`🔗 למקור המלא: ${r.link}`);lines.push('','📊 לכל הפרסומים והנתונים: https://electiontrust.info/');const rawText=lines.join('\n');if(isMobileDevice()){const text=encodeURIComponent(rawText);window.open(`https://wa.me/?text=${text}`,'_blank');return}
       const btn=e&&e.currentTarget;const restoreText=btn?btn.textContent:null,restoreTitle=btn?btn.title:null;const onDone=ok=>{if(!btn)return;btn.textContent=ok?'✔ הועתק':'✕ שגיאה בהעתקה';setTimeout(()=>{btn.textContent=restoreText;btn.title=restoreTitle},1800)};
       if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(rawText).then(()=>onDone(true)).catch(()=>onDone(false))}else{try{const ta=document.createElement('textarea');ta.value=rawText;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);onDone(true)}catch(err){onDone(false)}}}
     function toggleDesc(btn){const td=btn.closest('td.desc');td.classList.toggle('expanded');btn.textContent=td.classList.contains('expanded')?'הצג פחות':'הצג עוד'}
