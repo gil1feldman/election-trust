@@ -1173,6 +1173,12 @@ function populateSelect(id, values) {
 
 function normalizeTargetValue(value) {
   const str = String(value || '').trim();
+  if (str.startsWith('מינויים ופרוצדורה')) {
+    return 'מינוייים ופרוצדורות';
+  }
+  if (str.startsWith('החלטות מנהליות')) {
+    return 'החלטות מנהליות';
+  }
   return str.replace(/\(([^)]*)\)/g, (_, inner) => `(${inner.replace(/,\s*/g, ' • ')})`);
 }
 
