@@ -1008,7 +1008,7 @@
         </div>
       </div>
       <div class="field">
-        <label>תיאור קצר <span class="req">*</span></label>
+        <label>תיאור קצר</label>
         <textarea id="fDesc" placeholder="תיאור תמציתי של הידיעה..." maxlength="500" rows="3"></textarea>
         <div class="char-count"><span id="descCount">0</span>/500</div>
       </div>
@@ -1028,19 +1028,19 @@
       <!-- שורה 1: מהות הפעולה + מי הגורמ/ים + שיוך מפלגתי -->
       <div class="grid-3" style="margin-bottom:20px">
         <div class="field autocomplete-wrap">
-          <label>מהות הפעולה <span class="req">*</span></label>
+          <label>מהות הפעולה</label>
           <select id="fActionType">
             <option value="">— בחרו —</option>
           </select>
         </div>
         <div class="field autocomplete-wrap">
-          <label>מי הגורמ/ים <span class="req">*</span></label>
+          <label>מי הגורמ/ים</label>
           <input type="text" id="fSpeaker" placeholder="הקלידו שם גורם..." autocomplete="off">
           <div class="autocomplete-list" id="acSpeaker"></div>
           <div class="field-hint">ניתן להוסיף מספר גורמים מופרדים בפסיק</div>
         </div>
         <div class="field autocomplete-wrap">
-          <label>שיוך מפלגתי <span class="req">*</span></label>
+          <label>שיוך מפלגתי</label>
           <input type="text" id="fParty" placeholder="שם מפלגה / גוף..." autocomplete="off">
           <div class="autocomplete-list" id="acParty"></div>
           <div class="field-hint">ניתן לציין מספר מפלגות מופרדות בפסיק</div>
@@ -1054,7 +1054,7 @@
           <input type="text" id="fRole" placeholder="לדוגמה: שר הפנים, יו&quot;ר ועדה..." autocomplete="off">
         </div>
         <div class="field autocomplete-wrap">
-          <label>איפה פורסם <span class="req">*</span></label>
+          <label>איפה פורסם</label>
           <input type="text" id="fWhere" placeholder="ערוץ / פלטפורמה..." autocomplete="off">
           <div class="autocomplete-list" id="acWhere"></div>
         </div>
@@ -1062,14 +1062,14 @@
 
       <!-- שורה 3: יעד הפעולה -->
       <div class="field" style="margin-bottom:20px">
-        <label>יעד הפעולה <span class="req">*</span></label>
+        <label>יעד הפעולה</label>
         <div id="fTarget" class="target-grid" role="group" aria-label="יעד הפעולה"></div>
         <div class="field-hint">ניתן לבחור יותר מאפשרות אחת</div>
       </div>
 
       <!-- שורה 4: שם המותקף -->
       <div class="field autocomplete-wrap" style="margin-bottom:20px">
-        <label>שם המותקף <span class="req" id="attackedReq" style="display:none">*</span> <span id="attackedOptional" style="font-weight:400;color:var(--text-muted)">(שדה רשות)</span></label>
+        <label>שם המותקף <span id="attackedReq" style="display:none"></span> <span id="attackedOptional" style="font-weight:400;color:var(--text-muted)">(שדה רשות)</span></label>
         <input type="text" id="fAttacked" placeholder="לדוגמה: נעם סולברג, דין ליבנה" autocomplete="off">
         <div class="autocomplete-list" id="acAttacked"></div>
         <div class="field-hint">ניתן להוסיף יותר משם אחד ולהפריד בין השמות בפסיק</div>
@@ -1310,7 +1310,7 @@ document.getElementById('fDesc').addEventListener('input', function() {
 
 // בעל התפקיד המותקף הוא שדה חובה אם אחד מיעדי הפעולה שנבחרו הוא בעלי תפקידים
 function attackedIsRequired() {
-  return getSelectedTargets().some(v => v.includes('בעלי תפקיד'));
+  return false; // כל השדות רשות
 }
 
 function updateAttackedRequirement() {
@@ -1334,13 +1334,6 @@ async function submitForm() {
   const targets = getSelectedTargets();
   const target = targets.join(', ');
 
-  if (!desc)    return showToast('יש להזין תיאור קצר', true);
-  if (!action)  return showToast('יש לבחור מהות הפעולה', true);
-  if (!speaker) return showToast('יש להזין שם גורם/ים', true);
-  if (!party)   return showToast('יש להזין שיוך מפלגתי', true);
-  if (!where)   return showToast('יש להזין היכן פורסם', true);
-  if (!targets.length) return showToast('יש לבחור לפחות יעד פעולה אחד', true);
-  if (attackedIsRequired() && !attacked) return showToast('יש להזין את שם המותקף', true);
 
   const btn = document.getElementById('btnSubmit');
   btn.classList.add('loading');
